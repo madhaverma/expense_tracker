@@ -18,10 +18,24 @@ const allowedOrigins = (process.env.FRONTEND_URL || "http://localhost:5173,http:
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
+const isVercelOrigin = (origin) => {
+  try {
+    return new URL(origin).hostname.endsWith(".vercel.app");
+  } catch {
+    return false;
+  }
+};
 
 app.use(express.json());
 app.use(cors({
-  origin: allowedOrigins,
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin) || isVercelOrigin(origin)) {
+      callback(null, true);
+      return;
+    }
+
+    callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
 }));
 
