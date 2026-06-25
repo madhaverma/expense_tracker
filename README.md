@@ -1,3 +1,5 @@
+<img width="1087" height="595" alt="Screenshot 2026-06-25 225036" src="https://github.com/user-attachments/assets/2c390aa5-a267-46e8-aa19-2d772bb2b5ba" />
+<img width="1088" height="590" alt="Screenshot 2026-06-25 225323" src="https://github.com/user-attachments/assets/20e68d9a-ab5e-4e5e-81e6-e85ca9d686ab" />
 # Expense Tracker
 
 Vite + React frontend with an Express and MongoDB backend.
