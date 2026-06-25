@@ -13,6 +13,7 @@ import {
   loginUser,
   signupUser,
   updateTransaction,
+  API_BASE_URL,
 } from "./api/api";
 
 const STORAGE_KEY = "spendly_user";
@@ -34,7 +35,7 @@ const getStoredUser = () => {
 const getApiErrorMessage = (err, fallback) => {
   if (err.response?.data?.error) return err.response.data.error;
   if (err.code === "ERR_NETWORK" || err.message === "Network Error") {
-    return "API server is not running. Start the backend on http://localhost:3000 and try again.";
+    return `API server is not reachable at ${API_BASE_URL}. Check the backend deploy and CORS settings.`;
   }
   return fallback;
 };
