@@ -32,7 +32,7 @@ export default function TransactionList({ transactions, onEdit, onDelete }) {
         {transactions.map((tx) => {
           const style = CAT_STYLES[tx.category] || CAT_STYLES["Other"];
           return (
-            <div key={tx.id} className="flex items-center gap-3 py-2 group">
+            <div key={tx.id} className="group flex items-center gap-2 py-2 sm:gap-3">
               <div className={`w-8 h-8 rounded-full ${style.bg} flex items-center justify-center text-base flex-shrink-0`}>
                 {style.emoji}
               </div>
@@ -40,20 +40,20 @@ export default function TransactionList({ transactions, onEdit, onDelete }) {
                 <p className="text-xs font-medium text-[#1a1714] truncate">{tx.description}</p>
                 <p className="text-[10px] text-[#B4B2A9]">{tx.category}</p>
               </div>
-              <span className={`text-xs font-medium ${tx.type === "income" ? "text-[#639922]" : "text-[#D4537E]"}`}>
+              <span className={`min-w-0 text-right text-xs font-medium ${tx.type === "income" ? "text-[#639922]" : "text-[#D4537E]"}`}>
                 {tx.type === "income" ? "+" : "-"}{fmt(tx.amount)}
               </span>
-              <span className="text-[10px] text-[#B4B2A9] min-w-[40px] text-right">{fmtDate(tx.date)}</span>
+              <span className="hidden min-w-[40px] text-right text-[10px] text-[#B4B2A9] sm:inline">{fmtDate(tx.date)}</span>
               <button
                 onClick={() => onEdit(tx)}
-                className="opacity-0 group-hover:opacity-100 transition-opacity text-[#7F77DD] p-1 rounded"
+                className="rounded p-1 text-[#7F77DD] opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100"
                 aria-label="Edit transaction"
               >
                 <Pencil size={13} />
               </button>
               <button
                 onClick={() => onDelete(tx.id)}
-                className="opacity-0 group-hover:opacity-100 transition-opacity text-[#D4537E] p-1 rounded"
+                className="rounded p-1 text-[#D4537E] opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100"
                 aria-label="Delete transaction"
               >
                 <Trash2 size={13} />

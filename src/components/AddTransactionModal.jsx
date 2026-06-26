@@ -72,8 +72,8 @@ export default function AddTransactionModal({ transaction, onClose, onSave }) {
   );
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl w-full max-w-lg overflow-hidden shadow-xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-3 sm:p-4">
+      <div className="max-h-[calc(100vh-24px)] w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-xl">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 bg-[#7F77DD]">
           <h2 className="text-base font-medium text-white">{transaction ? "Edit transaction" : "Add transaction"}</h2>
@@ -89,9 +89,9 @@ export default function AddTransactionModal({ transaction, onClose, onSave }) {
           {typeTab("transfer","Transfer","border-b-2 border-[#7F77DD] text-[#534AB7]")}
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="max-h-[calc(100vh-136px)] space-y-4 overflow-y-auto p-4 sm:p-6">
           {/* Description + Amount */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className="block text-[11px] font-medium text-[#888780] uppercase tracking-wide mb-1.5">Description</label>
               <input
@@ -119,7 +119,7 @@ export default function AddTransactionModal({ transaction, onClose, onSave }) {
           {/* Category */}
           <div>
             <label className="block text-[11px] font-medium text-[#888780] uppercase tracking-wide mb-2">Category</label>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
               {cats.map(({ name, emoji, bg }) => (
                 <button
                   key={name}
@@ -136,7 +136,7 @@ export default function AddTransactionModal({ transaction, onClose, onSave }) {
           </div>
 
           {/* Date + Note */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className="block text-[11px] font-medium text-[#888780] uppercase tracking-wide mb-1.5">Date</label>
               <input
@@ -163,17 +163,17 @@ export default function AddTransactionModal({ transaction, onClose, onSave }) {
           {error && <p className="text-xs text-[#D4537E] bg-[#FBEAF0] px-3 py-2 rounded-lg">{error}</p>}
 
           {/* Actions */}
-          <div className="flex gap-3 pt-1">
+          <div className="flex flex-col gap-3 pt-1 sm:flex-row">
             <button
               onClick={onClose}
-              className="flex-1 py-2.5 rounded-lg text-sm font-medium border border-[#D3D1C7] bg-white text-[#5F5E5A] hover:bg-[#F8F7F4] transition-colors"
+              className="flex-1 rounded-lg border border-[#D3D1C7] bg-white py-2.5 text-sm font-medium text-[#5F5E5A] transition-colors hover:bg-[#F8F7F4]"
             >
               Cancel
             </button>
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex-[2] py-2.5 rounded-lg text-sm font-medium bg-[#7F77DD] text-white hover:bg-[#6d65cc] disabled:opacity-70 transition-colors flex items-center justify-center gap-2"
+              className="flex flex-[2] items-center justify-center gap-2 rounded-lg bg-[#7F77DD] py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#6d65cc] disabled:opacity-70"
             >
               <Check size={15} />
               {saving ? "Saving..." : "Save transaction"}

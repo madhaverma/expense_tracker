@@ -58,31 +58,31 @@ export default function Dashboard({ transactions, onAddClick, onEdit, onDelete, 
   };
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <h1 className="text-lg font-medium text-[#1a1714]">Dashboard</h1>
           <p className="text-xs text-[#888780] mt-0.5">{monthLabel}</p>
         </div>
-        <div className="flex gap-2">
-          <div className="flex items-center rounded-lg border border-[#D3D1C7] bg-white overflow-hidden">
+        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+          <div className="flex w-full items-center overflow-hidden rounded-lg border border-[#D3D1C7] bg-white sm:w-auto">
             <button
               type="button"
               onClick={() => shiftMonth(-1)}
-              className="h-8 w-8 flex items-center justify-center text-[#5F5E5A] hover:bg-[#F8F7F4] transition-colors"
+              className="flex h-9 w-9 flex-shrink-0 items-center justify-center text-[#5F5E5A] transition-colors hover:bg-[#F8F7F4]"
               aria-label="Previous month"
             >
               <ChevronLeft size={14} />
             </button>
-            <label className="h-8 flex items-center gap-1.5 px-2 border-x border-[#E8E6E0] text-xs font-medium text-[#5F5E5A]">
+            <label className="flex h-9 min-w-0 flex-1 items-center gap-1.5 border-x border-[#E8E6E0] px-2 text-xs font-medium text-[#5F5E5A] sm:flex-none">
               <Calendar size={14} />
               <input
                 type="month"
                 value={selectedMonth}
                 max={currentMonth}
                 onChange={(e) => setSelectedMonth(e.target.value || currentMonth)}
-                className="w-[116px] bg-transparent text-xs font-medium text-[#5F5E5A] focus:outline-none"
+                className="min-w-0 flex-1 bg-transparent text-xs font-medium text-[#5F5E5A] focus:outline-none sm:w-[116px]"
                 aria-label="Select month"
               />
             </label>
@@ -90,7 +90,7 @@ export default function Dashboard({ transactions, onAddClick, onEdit, onDelete, 
               type="button"
               onClick={() => shiftMonth(1)}
               disabled={isCurrentMonth}
-              className="h-8 w-8 flex items-center justify-center text-[#5F5E5A] hover:bg-[#F8F7F4] disabled:opacity-35 disabled:hover:bg-white transition-colors"
+              className="flex h-9 w-9 flex-shrink-0 items-center justify-center text-[#5F5E5A] transition-colors hover:bg-[#F8F7F4] disabled:opacity-35 disabled:hover:bg-white"
               aria-label="Next month"
             >
               <ChevronRight size={14} />
@@ -100,14 +100,14 @@ export default function Dashboard({ transactions, onAddClick, onEdit, onDelete, 
             <button
               type="button"
               onClick={() => setSelectedMonth(currentMonth)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-[#D3D1C7] bg-white text-[#5F5E5A] hover:bg-[#F8F7F4] transition-colors"
+              className="flex h-9 items-center justify-center gap-1.5 rounded-lg border border-[#D3D1C7] bg-white px-3 text-xs font-medium text-[#5F5E5A] transition-colors hover:bg-[#F8F7F4]"
             >
               This month
             </button>
           )}
           <button
             onClick={onAddClick}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium bg-[#7F77DD] text-white hover:bg-[#6d65cc] transition-colors"
+            className="flex h-9 items-center justify-center gap-1.5 rounded-lg bg-[#7F77DD] px-3 text-xs font-medium text-white transition-colors hover:bg-[#6d65cc]"
           >
             <Plus size={14} />
             Add transaction
@@ -127,7 +127,7 @@ export default function Dashboard({ transactions, onAddClick, onEdit, onDelete, 
       )}
 
       {/* Stat cards */}
-      <div className="grid grid-cols-4 gap-3 mb-4">
+      <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
           label="Balance"
           value={fmt(balance)}
@@ -166,7 +166,7 @@ export default function Dashboard({ transactions, onAddClick, onEdit, onDelete, 
       </div>
 
       {/* Bottom grid */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <MonthlyChart transactions={transactions} selectedMonth={selectedMonth} />
         <div className="flex flex-col gap-4">
           <CategoryBreakdown transactions={transactions} curMonth={curMonth} />

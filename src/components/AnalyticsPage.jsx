@@ -28,7 +28,7 @@ export default function AnalyticsPage({ transactions, loading, error }) {
   const savingsRate = income > 0 ? Math.round((balance / income) * 100) : 0;
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       <div className="mb-6">
         <h1 className="text-lg font-medium text-[#1a1714]">Analytics</h1>
         <p className="text-xs text-[#888780] mt-0.5">Monthly trends and category insights</p>
@@ -45,7 +45,7 @@ export default function AnalyticsPage({ transactions, loading, error }) {
         </p>
       )}
 
-      <div className="grid grid-cols-4 gap-3 mb-4">
+      <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
           label="Balance"
           value={fmt(balance)}
@@ -83,7 +83,7 @@ export default function AnalyticsPage({ transactions, loading, error }) {
         />
       </div>
 
-      <div className="grid grid-cols-[1.4fr_1fr] gap-4">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.4fr_1fr]">
         <MonthlyChart transactions={transactions} selectedMonth={selectedMonth} />
         <CategoryBreakdown transactions={transactions} curMonth={selectedMonth} />
       </div>

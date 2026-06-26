@@ -225,9 +225,9 @@ export default function App() {
 
 function AppLayout({ children, user, isLoggedIn, onLogout }) {
   return (
-    <div className="flex h-screen bg-[#F8F7F4] font-sans overflow-hidden">
+    <div className="flex min-h-screen bg-[#F8F7F4] font-sans md:h-screen md:overflow-hidden">
       <Sidebar isLoggedIn={isLoggedIn} user={user} onLogout={onLogout} />
-      <main className="flex-1 overflow-y-auto">{children}</main>
+      <main className="min-w-0 flex-1 pb-20 md:overflow-y-auto md:pb-0">{children}</main>
     </div>
   );
 }

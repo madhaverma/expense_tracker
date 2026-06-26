@@ -18,15 +18,15 @@ export default function TransactionsPage({
   error,
 }) {
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 sm:p-6">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-lg font-medium text-[#1a1714]">Transactions</h1>
           <p className="text-xs text-[#888780] mt-0.5">All income and expenses</p>
         </div>
         <button
           onClick={onAddClick}
-          className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium bg-[#7F77DD] text-white hover:bg-[#6d65cc] transition-colors"
+          className="flex h-9 items-center justify-center gap-1.5 rounded-lg bg-[#7F77DD] px-3 text-xs font-medium text-white transition-colors hover:bg-[#6d65cc] sm:w-auto"
         >
           <Plus size={14} />
           Add transaction
@@ -40,7 +40,7 @@ export default function TransactionsPage({
       )}
 
       <div className="bg-white border border-[#E8E6E0] rounded-xl overflow-hidden">
-        <div className="grid grid-cols-[1.2fr_0.9fr_0.8fr_0.8fr_72px] gap-3 px-4 py-3 bg-[#F8F7F4] text-[11px] font-medium uppercase tracking-wide text-[#888780]">
+        <div className="hidden grid-cols-[1.2fr_0.9fr_0.8fr_0.8fr_72px] gap-3 bg-[#F8F7F4] px-4 py-3 text-[11px] font-medium uppercase tracking-wide text-[#888780] md:grid">
           <span>Description</span>
           <span>Category</span>
           <span>Date</span>
@@ -63,23 +63,25 @@ export default function TransactionsPage({
             {transactions.map((tx) => (
               <div
                 key={tx.id}
-                className="grid grid-cols-[1.2fr_0.9fr_0.8fr_0.8fr_72px] gap-3 items-center px-4 py-3 text-xs"
+                className="grid gap-2 px-4 py-3 text-xs md:grid-cols-[1.2fr_0.9fr_0.8fr_0.8fr_72px] md:items-center md:gap-3"
               >
                 <div className="min-w-0">
                   <p className="font-medium text-[#1a1714] truncate">{tx.description}</p>
                   {tx.note && <p className="text-[10px] text-[#B4B2A9] truncate">{tx.note}</p>}
                 </div>
-                <span className="text-[#5F5E5A] truncate">{tx.category}</span>
-                <span className="text-[#888780]">{fmtDate(tx.date)}</span>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] md:contents">
+                  <span className="text-[#5F5E5A]">{tx.category}</span>
+                  <span className="text-[#888780]">{fmtDate(tx.date)}</span>
+                </div>
                 <span
-                  className={`text-right font-medium ${
+                  className={`font-medium md:text-right ${
                     tx.type === "income" ? "text-[#639922]" : "text-[#D4537E]"
                   }`}
                 >
                   {tx.type === "income" ? "+" : "-"}
                   {fmt(tx.amount)}
                 </span>
-                <div className="flex justify-end gap-1">
+                <div className="flex justify-start gap-1 md:justify-end">
                   <button
                     onClick={() => onEdit(tx)}
                     className="p-1.5 rounded-md text-[#7F77DD] hover:bg-[#EEEDFE] transition-colors"
